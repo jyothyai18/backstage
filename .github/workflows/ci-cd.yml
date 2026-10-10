@@ -82,7 +82,15 @@ jobs:
       - name: Configure Docker for Artifact Registry
         run: |
           gcloud auth configure-docker ${{ secrets.GKE_REGION }}-docker.pkg.dev
-
+      - name: Debug REPO variable
+        env:
+        REPO: ${{ vars.REPO }}
+        run: |
+          if [ -z "$REPO" ]; then
+            echo "REPO is EMPTY"
+            exit 1
+          else
+          echo "REPO is set"
       - name: Build Docker image
         run: |
           docker build \
