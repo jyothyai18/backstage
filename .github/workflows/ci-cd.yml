@@ -67,7 +67,6 @@ jobs:
         with:
           name: backend-dist
           path: packages/backend/dist
-
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
@@ -87,12 +86,12 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }} \
+            -t ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ var.REPO }}/${{ env.IMAGE }}:${{ github.sha }} \
             -f packages/backend/Dockerfile .
 
       - name: Push image to Artifact Registry
         run: |
-          docker push ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }}
+          docker push ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ var.REPO }}/${{ env.IMAGE }}:${{ github.sha }}
         
   deploy:
     runs-on: ubuntu-latest
@@ -113,7 +112,7 @@ jobs:
           GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}  # Use the GCP project ID stored in secrets
         run: |
           gcloud run deploy backstage \
-            --image ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }} \
+            --image ${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ var.REPO }}/${{ env.IMAGE }}:${{ github.sha }} \
             --region ${{ secrets.GKE_REGION }} \
             --platform managed \
             --allow-unauthenticated \
