@@ -72,13 +72,13 @@ jobs:
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
-          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          workload_identity_provider: projects/196510580974/locations/global/workloadIdentityPools/github-pool/providers/github-provider
+          service_account: github-deployer@backstagecloudrun.iam.gserviceaccount.com
 
       - name: Set up gcloud CLI
         uses: google-github-actions/setup-gcloud@v2
 
-      - name: Install GKE auth plugin
+      - name: Install GKE auth plugin 
         run: gcloud components install gke-gcloud-auth-plugin --quiet
 
       - name: Configure Docker for Artifact Registry
