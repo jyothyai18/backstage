@@ -89,12 +89,12 @@ steps:
   - name: Build Docker image
     run: |
       docker build \
-        -t "${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }}" \
+        -t "${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.REPO }}/${{ env.IMAGE }}:${{ github.sha }}" \
         -f packages/backend/Dockerfile .
 
   - name: Push image to Artifact Registry
     run: |
-      docker push "${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE }}:${{ github.sha }}"
+      docker push "${{ secrets.GKE_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.REPO }}/${{ env.IMAGE }}:${{ github.sha }}"
 ```
 
 deploy:
