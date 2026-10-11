@@ -119,5 +119,6 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --project $GCP_PROJECT_ID \
+            --port 8080 \
             --memory 1Gi \
             --set-env-vars NODE_ENV=production
