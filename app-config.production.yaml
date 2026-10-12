@@ -41,10 +41,15 @@ backend:
       # ssl:
       #   ca: # if you have a CA file and want to verify it you can uncomment this section
       #     $file: <file-path>/ca/server.crt
-
+ 
 auth:
+  environment: production
   providers:
-    guest: {}
+    guest: 
+      userEntityRef: user:default/backstage-guest
+      dangerouslyAllowOutsideDevelopment: true
+      ownershipEntityRefs: [group:default/guest-family]
+ 
 
 catalog:
   import:
