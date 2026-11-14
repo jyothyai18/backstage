@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jyothyai18
+spec:
+  profile:
+    displayName: Jyothi
+    email: jyothyai18@gmail.com
+  memberOf: [qa]
