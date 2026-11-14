@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-q
+  description: Team Q
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: team-q@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: qa
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jyothyai18
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: jyothyai18@gmail.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Luna&backgroundColor=transparent
+  memberOf: [team-q]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: Ayodeji.A
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: ayodeji@gmail.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Snickers
+  memberOf: [team-q] 
+---

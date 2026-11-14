@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Olu-Pipelines
+  description: Pipelines Of Code
+  links:
+    - url: http://www.poc.com/
+      title: Website
+    - url: https://meta.wikimedia.org/wiki/
+      title: Intranet
+
+spec:
+  type: root
+  children: [qa, dev]
+  profile: 
+    displayName: Olu-Pipelines
+---   
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: guest
+  description: Limited View for Guest
+spec:
+   type: root
+   children: []
+   profile:  
+     displayName: Guest
+--- 
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: all-groups
+  description: A collection of all Backstage example Groups
+spec:
+  targets:
+    - ./qa.yaml
+    - ./dev.yaml
+    - ./team-q.yaml
+    - ./team-d.yaml

@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: dev
+  description: The DEV department
+spec:
+  type: department
+  # Intentional no profile for testing
+  parent: Olu-Pipelines
+  children: [team-d]
