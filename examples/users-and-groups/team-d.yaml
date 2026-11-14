@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-d
+  description: Team D
+spec:
+  type: team
+  profile:
+    # Intentional no displayName for testing
+    email: team-d@example.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Fluffy&backgroundType=solid,gradientLinear&backgroundColor=ffd5dc,b6e3f4
+  parent: backstage
+  children: []
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: Olu.f
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: olu@gmail.com
+    picture: https://api.dicebear.com/7.x/identicon/svg?seed=Bailey&backgroundType=gradientLinear&backgroundColor=b6e3f4,ffd5dc,ffdfbf,c0aede
+  memberOf: [team-d]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: Davida.a
+spec:
+  profile:
+    # Intentional no displayName for testing
+    email: david@gmail.com
+    picture: https://api.dicebear.com/7.x/avataaars/svg?seed=Cuddles
+  memberOf: [team-d]
+---
