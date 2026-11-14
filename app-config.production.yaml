@@ -48,7 +48,7 @@ auth:
     guest: 
       userEntityRef: user:default/backstage-guest
       dangerouslyAllowOutsideDevelopment: true
-      ownershipEntityRefs: [group:default/guest-family]
+      ownershipEntityRefs: [group:default/guest]
  
 
 catalog:

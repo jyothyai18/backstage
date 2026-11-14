@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: poc
+  description: Pipelines Of Code
+spec:
+  type: business-unit
+  profile:
+    displayName: POC
+  children: [qa]

@@ -1,0 +1,47 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Pipelines Of COde
+  description: pipelines of code
+spec:
+  type: root
+  profile: 
+    displayName: POC
+    children: [qa]
+
+---   
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: guest
+  description: Limited View for Guest
+spec:
+  type: team
+  members:
+    - backstage-guest
+  profile:  
+    displayName: Guest
+    children: []
+
+---  
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: backstage-guest
+  description: Limited View for Guest
+spec:
+  memberOf: 
+    - guest
+
+---  
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: users-and-groups
+  description: All groups & users
+spec:
+  targets:
+    - ./groups.yaml
+    - ./users.yaml
+
+---  

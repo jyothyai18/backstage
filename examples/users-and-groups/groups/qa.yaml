@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: qa
+  description: Testing Team
+spec:
+  type: team
+  profile:
+    displayName: QA
+  parent: group:poc  
+  children: []
