@@ -28,11 +28,11 @@ backend:
   database:
     client: pg
     connection:
-      host: localhost
+      host: ${POSTGRES_NEON_PROD_HOST}
       port: ${POSTGRES_PORT}
-      user: ${POSTGRES_USER}
-      password: ${POSTGRES_PASSWORD}
-      database: ${POSTGRES_DB}
+      user: ${POSTGRES_NEON_PROD_USER}
+      password: ${POSTGRES_NEON_PROD_PASSWORD}
+      database: ${POSTGRES_NEON_PROD_DATABASE}
     # client: better-sqlite3
     # connection: ':memory:'
       # https://node-postgres.com/features/ssl
