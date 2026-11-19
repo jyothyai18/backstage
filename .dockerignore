@@ -2,7 +2,11 @@
 .yarn/cache
 .yarn/install-state.gz
 node_modules
-packages/*/src
 packages/*/node_modules
-plugins
 *.local.yaml
+cypress/videos
+cypress/screenshots
+**/node_modules
+.env
+.env.*
+docker-build.log

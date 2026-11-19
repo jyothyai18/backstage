@@ -1,0 +1,52 @@
+# Step 1: Use Node.js 24
+FROM node:24-bookworm-slim
+
+# Step 2: Install Linux build dependencies
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    build-essential \
+    git \
+    pkg-config \
+    libsecret-1-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Step 3: Set working directory
+WORKDIR /app
+
+# Step 4: Enable Yarn
+RUN corepack enable
+
+# Step 5: Copy Backstage source code
+COPY . .
+
+# Step 6: Install dependencies
+RUN yarn install
+
+# # Step 7: Run TypeScript build steps
+# RUN yarn tsc
+
+# Step 8: Build Backstage
+RUN yarn build:backend
+
+RUN tar -xzf packages/backend/dist/skeleton.tar.gz -C /app && \
+    tar -xzf packages/backend/dist/bundle.tar.gz -C /app
+
+# Step 9: Document application port
+EXPOSE 8080
+
+# Step 10: Start Backstage
+CMD ["node", "packages/backend", "--config", "app-config.yaml"]
+# Check which source files exist inside Docker
+
+
+
+# RUN echo "Checking Backstage source files..." && \
+#     ls -la packages && \
+#     ls -la packages/backend && \
+#     ls -la packages/backend/src
+
+# RUN yarn install
+
+# RUN yarn tsc

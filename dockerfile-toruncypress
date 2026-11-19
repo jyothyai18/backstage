@@ -1,0 +1,40 @@
+
+FROM cypress/browsers:node-24.22.1-chrome-156.0.8078.73-1-ff-159.0-edge-156.0.4314.50-1
+
+WORKDIR /app
+
+# Install Python and native build tools
+USER root
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+      python3 \
+      make \
+      g++ \
+      build-essential \
+      pkg-config && \
+    rm -rf /var/lib/apt/lists/*
+
+# Configure Python for node-gyp
+ENV PYTHON=/usr/bin/python3
+
+# Enable Yarn 4
+RUN corepack enable
+
+# Copy project files
+COPY . .
+
+# Use node_modules instead of Plug'n'Play
+ENV YARN_NODE_LINKER=node-modules
+
+# Install project dependencies and add Cypress
+RUN YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install && \
+    YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn add --dev cypress
+
+# Download and verify the Cypress app
+RUN yarn cypress install && \
+    yarn cypress verify
+
+RUN yarn add -D @cypress/webpack-preprocessor ts-loader
+
+CMD ["yarn", "cypress", "run", "--browser", "chrome"]
